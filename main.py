@@ -41,4 +41,3 @@ for root, dirs, files in os.walk(path):
         file_path = os.path.join(root, file)
 
         # Вызываем функцию convert_to_matrix для обработки файла
-        convert_to_matrix(file_path)
