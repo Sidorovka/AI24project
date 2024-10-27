@@ -1,13 +1,12 @@
 import kagglehub
+import os
+from PIL import Image
+import numpy as np
 
 # Download latest version
 path = kagglehub.dataset_download("misrakahmed/vegetable-image-dataset")
 
 print("Path to dataset files:", path)
-
-import os
-from PIL import Image
-import numpy as np
 
 processed_files = []
 
@@ -61,8 +60,15 @@ def show_images_in_grid(path, num_cols=10):
     plt.tight_layout()  # Улучшаем компоновку
     plt.show()
 
+ Указываем папку с нужными изображениями
+temp_dir = 'Bean'
+
 # Указываем путь к папке с файлами .npy
-path = '/root/.cache/kagglehub/datasets/misrakahmed/vegetable-image-dataset/versions/1/Vegetable Images/test/Bean'
+additional_dirs = ['Vegetable Images', 'test', temp_dir]
+
+# Объединение базового пути с дополнительными каталогами
+path = os.path.join(path, *additional_dirs)
+
 show_images_in_grid(path)
 
 # Функция для построения гистограмм
@@ -82,8 +88,6 @@ def plot_histograms_in_grid(path, num_cols=10):
     plt.tight_layout()  # Улучшаем компоновку
     plt.show()
 
-# Указываем путь к папке с файлами .npy
-path = '/root/.cache/kagglehub/datasets/misrakahmed/vegetable-image-dataset/versions/1/Vegetable Images/test/Bean'
 plot_histograms_in_grid(path)
 
 # Функция для построения гистограмм
@@ -109,6 +113,4 @@ def plot_channel_histograms_in_grid(path, num_cols=10):
     plt.tight_layout()  # Улучшаем компоновку
     plt.show()
 
-# Указываем путь к папке с файлами .npy
-path = '/root/.cache/kagglehub/datasets/misrakahmed/vegetable-image-dataset/versions/1/Vegetable Images/test/Bean'
 plot_channel_histograms_in_grid(path)
